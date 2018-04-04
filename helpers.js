@@ -2,11 +2,16 @@
 
 const fs = require('fs')
 
-const readQuote = (id, cb) => {
-  fs.readFile('./quotes/1.json', 'utf8', (err, data) => {
-    if (err) { cb(err) }
-    data = JSON.parse(data)
-    cb(null, data)
+const readQuote = (id) => {
+  return new Promise((resolve, reject) => {
+     fs.readFile(`./quotes/${id}.json`, 'utf8', (error, data) => {
+      if (error) {
+        error.status = 404
+        return reject(error)
+      }
+
+      resolve(JSON.parse(data))
+     })
   })
 }
 

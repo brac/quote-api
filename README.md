@@ -46,7 +46,7 @@ We should remeber to abstract each function as much as possible, reducing it to 
 - Counter
   - let counter = 0
 - Routes
-  - GET
+  * GET
     * fs readFile
   - POST
     - fs writeFile
@@ -57,9 +57,9 @@ We should remeber to abstract each function as much as possible, reducing it to 
    - fs deleteFile(?)
 - Middlewear
   - writeFile
-  - readFile(?)
-? Error Handler
-  ? error.status || 500
+  * readFile
+* Error Handler
+  * error.status || 500
   ? Use the following
 ```javascript
 res.json({

@@ -1,8 +1,12 @@
 // jshint asi:true
 
-const express = require('express')
-const app = express()
+const express     = require('express')
+const app         = express()
 const quoteRoutes = require('./routes/quotes')
+const bodyParser  = require('body-parser')
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use('/api/quotes', quoteRoutes)
 
@@ -11,14 +15,14 @@ app.use('/', (req, res) => {
 })
 
 // Error handler
-app.use(function (err, req, res, next) {
+app.use( (error, req, res, next) => {
   if (res.headersSent) {
-    console.log('Passing to default error handler')
-    return next(err)
+    console.log('Headers have already been sent \nPassing to default error handler')
+    return next(error)
   }
-  res.status(err.status || 500).json({
-    errors: [
-      `Error over here! ${err}`]
+
+  res.status(error.status || 500).json({
+    errors: [ error.message ]
   })
 })
 
