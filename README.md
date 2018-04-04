@@ -39,8 +39,8 @@ We should remeber to abstract each function as much as possible, reducing it to 
 
 ####Inital Plan:
 
-- Express
-  - listening:3000
+* Express
+  * listening:3000
 - fs
   - triggered by routes
 - Counter
@@ -58,9 +58,9 @@ We should remeber to abstract each function as much as possible, reducing it to 
 - Middlewear
   - writeFile
   - readFile(?)
-- Error Handler
-  - error.status || 500
-  - Use the following
+? Error Handler
+  ? error.status || 500
+  ? Use the following
 ```javascript
 res.json({
   errors: [
