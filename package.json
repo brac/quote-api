@@ -1,0 +1,12 @@
+{
+  "name": "quote-api",
+  "version": "1.0.0",
+  "description": "## Goal ### To create a RESTful API using Express which will store and access data in ```.json``` files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
