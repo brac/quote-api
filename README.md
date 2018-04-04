@@ -41,13 +41,13 @@ We should remeber to abstract each function as much as possible, reducing it to 
 
 * Express
   * listening:3000
-- fs
-  - triggered by routes
+* fs
+  * triggered by routes
 - Counter
   - let counter = 0
 - Routes
   - GET
-    - fs readFile
+    * fs readFile
   - POST
     - fs writeFile
     - counter++

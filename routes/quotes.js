@@ -2,8 +2,8 @@
 
 const express = require('express')
 const router = express.Router()
-
-
+const fs = require('fs')
+const { readQuote } = require('../helpers')
 
 router.route('/')
   .get((req, res) => {
@@ -15,8 +15,11 @@ router.route('/')
   })
 
 router.route('/:id')
-  .get((req, res) => {
-    res.json({message: 'This will return a quote'})
+  .get((req, res, next) => {
+    readQuote(req.params.id, (err, data) => {
+      if (err) { next(err)}
+      res.json(data)
+    })
   })
 
   .put((req, res) => {
