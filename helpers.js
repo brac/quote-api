@@ -10,12 +10,30 @@ const readQuote = (id) => {
         return reject(error)
       }
 
+      // Success, parse the data and resolve it back to the caller
       resolve(JSON.parse(data))
      })
   })
 }
 
+const writeQuote = (reqBody) => {
+  return new Promise((resolve, reject) => {
+    let data = {
+      quote: reqBody.quote,
+      author: reqBody.author
+    }
+
+    data = JSON.stringify(data)
+
+    fs.writeFile(`./quotes/${counter}.json`, data, (error) => {
+      if (error) { return reject(error)}
+      resolve({message: 'Created Quote'})
+    })
+  })
+}
+
 
 module.exports = {
-  readQuote
+  readQuote,
+  writeQuote
 }

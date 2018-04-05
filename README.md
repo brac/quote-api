@@ -49,14 +49,14 @@ We should remeber to abstract each function as much as possible, reducing it to 
   * GET
     * fs readFile
   - POST
-    - fs writeFile
+    * fs writeFile
     - counter++
   - PUT
     - fs writeFile
   - DELETE
    - fs deleteFile(?)
 - Middlewear
-  - writeFile
+  * writeFile
   * readFile
 * Error Handler
   * error.status || 500
