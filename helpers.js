@@ -16,7 +16,7 @@ const readQuote = (id) => {
   })
 }
 
-const writeQuote = (reqBody) => {
+const writeQuote = (reqBody, id) => {
   return new Promise((resolve, reject) => {
     let data = {
       quote: reqBody.quote,
@@ -24,16 +24,37 @@ const writeQuote = (reqBody) => {
     }
 
     data = JSON.stringify(data)
+    let counter = (id) ? id : process.env.CNTR
 
-    fs.writeFile(`./quotes/${process.env.CNTR}.json`, data, (error) => {
-      process.env.CNTR++
+    fs.writeFile(`./quotes/${counter}.json`, data, (error) => {
       if (error) { return reject(error)}
       resolve({message: 'Created Quote'})
     })
   })
 }
 
+const updateQuote = (reqBody, id) => {
+  return new Promise((resolve, reject) => {
+
+
+    readQuote(id).then(
+      results => {
+        for(let prop in reqBody) {
+          results[prop] = reqBody[prop]
+        }
+
+        writeQuote(results, id).then(
+          results => resolve(`Quote ${id} updated!`),
+          error => next(error)
+        )
+      },
+      error => next(error)
+    )
+  })
+}
+
 module.exports = {
   readQuote,
-  writeQuote
+  writeQuote,
+  updateQuote
 }

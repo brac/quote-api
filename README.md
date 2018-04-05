@@ -49,14 +49,14 @@ We should remeber to abstract each function as much as possible, reducing it to 
 - Routes
   * GET
     * fs readFile
-  - POST
+  * POST
     * fs writeFile
-    - counter++
+    * counter++
   - PUT
     - fs writeFile
   - DELETE
    - fs deleteFile(?)
-- Middlewear
+* Middlewear
   * writeFile
   * readFile
 * Error Handler
@@ -70,7 +70,8 @@ res.json({
   ]
 })
 ```
-
+- Ensure specs are met
+- Refactor
 
 
 

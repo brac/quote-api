@@ -5,7 +5,8 @@ const router = express.Router()
 const fs = require('fs')
 const {
   readQuote,
-  writeQuote } = require('../helpers')
+  writeQuote,
+  updateQuote } = require('../helpers')
 
 
 router.route('/')
@@ -16,6 +17,7 @@ router.route('/')
   .post((req, res, next) => {
     writeQuote(req.body).then(
       results => {
+        process.env.CNTR++
         res.json(results)},
       error => next(error)
     )
@@ -28,8 +30,11 @@ router.route('/:id')
       error => next(error))
   })
 
-  .put((req, res) => {
-    res.json({message: 'This will update a quote'})
+  .put((req, res, next) => {
+    updateQuote(req.body, req.params.id).then(
+      results => res.json(results),
+      error => next(error)
+    )
   })
 
   .delete((req, res) => {
