@@ -25,13 +25,13 @@ const writeQuote = (reqBody) => {
 
     data = JSON.stringify(data)
 
-    fs.writeFile(`./quotes/${counter}.json`, data, (error) => {
+    fs.writeFile(`./quotes/${process.env.CNTR}.json`, data, (error) => {
+      process.env.CNTR++
       if (error) { return reject(error)}
       resolve({message: 'Created Quote'})
     })
   })
 }
-
 
 module.exports = {
   readQuote,

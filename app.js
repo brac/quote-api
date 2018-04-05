@@ -5,6 +5,7 @@ const app         = express()
 const quoteRoutes = require('./routes/quotes')
 const bodyParser  = require('body-parser')
 
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
@@ -22,7 +23,7 @@ app.use( (error, req, res, next) => {
   }
 
   res.status(error.status || 500).json({
-    errors: [ error.message ]
+    errors: [ {message: error.message, stackTrace: error.stack} ]
   })
 })
 

@@ -43,8 +43,9 @@ We should remeber to abstract each function as much as possible, reducing it to 
   * listening:3000
 * fs
   * triggered by routes
-- Counter
-  - let counter = 0
+* Counter
+  * let counter = 1
+    * Used enviornment variable and nodemon config ignores
 - Routes
   * GET
     * fs readFile

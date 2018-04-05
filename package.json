@@ -2,9 +2,12 @@
   "name": "quote-api",
   "version": "1.0.0",
   "description": "A RESTful API using Express and files.",
-  "main": "app.js",
   "scripts": {
+    "start": "CNTR=1 node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "nodemonConfig": {
+    "ignore": "quotes/*"
   },
   "keywords": [],
   "author": "",
