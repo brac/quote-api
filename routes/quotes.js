@@ -6,12 +6,13 @@ const fs = require('fs')
 const {
   readQuote,
   writeQuote,
-  updateQuote } = require('../helpers')
+  updateQuote,
+  deleteQuote } = require('../helpers')
 
 
 router.route('/')
   .get((req, res) => {
-    res.json({message: 'Please specify a quote id'})
+    res.json({message: 'Please specify a quote id and method'})
   })
 
   .post((req, res, next) => {
@@ -37,8 +38,11 @@ router.route('/:id')
     )
   })
 
-  .delete((req, res) => {
-    res.json({message: 'This will delete a quote'})
+  .delete((req, res, next) => {
+    deleteQuote(req.params.id).then(
+      results => res.json(results),
+      error => next(error)
+    )
   })
 
 module.exports = router

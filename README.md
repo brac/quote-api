@@ -46,16 +46,16 @@ We should remeber to abstract each function as much as possible, reducing it to 
 * Counter
   * let counter = 1
     * Used enviornment variable and nodemon config ignores
-- Routes
+* Routes
   * GET
     * fs readFile
   * POST
     * fs writeFile
     * counter++
-  - PUT
-    - fs writeFile
-  - DELETE
-   - fs deleteFile(?)
+  * PUT
+    * fs writeFile
+  * DELETE
+   * fs deleteFile(?)
 * Middlewear
   * writeFile
   * readFile
@@ -70,8 +70,8 @@ res.json({
   ]
 })
 ```
-- Ensure specs are met
-- Refactor
+* Ensure specs are met
+? Refactor
 
 
 

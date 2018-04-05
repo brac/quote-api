@@ -7,10 +7,9 @@ const readQuote = (id) => {
      fs.readFile(`./quotes/${id}.json`, 'utf8', (error, data) => {
       if (error) {
         error.status = 404
+        error.message = `No file at that id: ${id}`
         return reject(error)
       }
-
-      // Success, parse the data and resolve it back to the caller
       resolve(JSON.parse(data))
      })
   })
@@ -28,15 +27,13 @@ const writeQuote = (reqBody, id) => {
 
     fs.writeFile(`./quotes/${counter}.json`, data, (error) => {
       if (error) { return reject(error)}
-      resolve({message: 'Created Quote'})
+      resolve({message: `Successfully created the file ${counter}.json`})
     })
   })
 }
 
 const updateQuote = (reqBody, id) => {
   return new Promise((resolve, reject) => {
-
-
     readQuote(id).then(
       results => {
         for(let prop in reqBody) {
@@ -44,11 +41,28 @@ const updateQuote = (reqBody, id) => {
         }
 
         writeQuote(results, id).then(
-          results => resolve(`Quote ${id} updated!`),
-          error => next(error)
-        )
+          results => resolve(`Successfully udpated the file ${id}.json`),
+          error => {return reject(error)}
+        )},
+      error => {return reject(error)}
+    )
+  })
+}
+
+const deleteQuote = (id) => {
+  return new Promise((resolve, reject) => {
+    readQuote(id).then(
+      results => {
+        fs.unlink(`./quotes/${id}.json`, (error) => {
+          if (error) { return reject(error)}
+          resolve(`Successfully deleted the file ${id}.json`)
+        })
       },
-      error => next(error)
+      error => {
+        error.message = `No file at that id: ${id}`
+        error.status = 404
+        return reject(error)
+      }
     )
   })
 }
@@ -56,5 +70,6 @@ const updateQuote = (reqBody, id) => {
 module.exports = {
   readQuote,
   writeQuote,
-  updateQuote
+  updateQuote,
+  deleteQuote
 }
